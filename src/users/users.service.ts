@@ -48,7 +48,7 @@ export class UsersService {
     }
 
     create(user: {name: string, email: string, role: 'User'| 'Engineer'|'Helper'|'Cleaner'|'ADMIN'}) {
-        const userByHighestId = [...this.users].sort((a,b)=> b.id = a.id)
+        const userByHighestId = [...this.users].sort((a,b)=> b.id - a.id)
         const newUser = {
             id: userByHighestId[0].id + 1,
             ...user
@@ -57,7 +57,7 @@ export class UsersService {
         return newUser
     }
 
-    update(id: number, updatedUser: { name?: string, email: string, role: 'User'| 'Engineer'|'Helper'|'Cleaner'|'ADMIN' }) {
+    update(id: number, updatedUser: { name?: string, email?: string, role?: 'User'| 'Engineer'|'Helper'|'Cleaner'|'ADMIN' }) {
         this.users = this.users.map(user =>{
             if (user.id === id) {
                 return {...user, ...updatedUser}
